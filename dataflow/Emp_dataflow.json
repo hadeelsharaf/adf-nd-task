@@ -1,0 +1,52 @@
+{
+	"name": "Emp_dataflow",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "EMP_DelimitedText1",
+						"type": "DatasetReference"
+					},
+					"name": "source1",
+					"description": "Import data from Emp_DelimitedText1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Emp_AzureSqlTable1",
+						"type": "DatasetReference"
+					},
+					"name": "sink1",
+					"description": "Export data to _AzureSqlTable1"
+				}
+			],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          AgencyID as string,",
+				"          AgencyName as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          AgencyID as string,",
+				"          AgencyName as string",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink1"
+			]
+		}
+	}
+}
