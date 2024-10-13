@@ -1,0 +1,9 @@
+{
+	"name": "adf-ir-steps",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "1838c11a-6d03-4459-a4c4-8d2bb27ac7ea",
+		"tenantId": "f958e84a-92b8-439f-a62d-4f45996b6d07"
+	}
+}
